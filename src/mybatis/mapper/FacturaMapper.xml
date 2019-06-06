@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.FacturaMapper">
+  <select id="listar" resultType="modelo.Bean.facturaBean">
+   SELECT c.idcliente,f.* FROM factura f INNER JOIN cliente c ON f.idcliente=c.idcliente ORDER BY 1 
+  </select>
+  <select id="buscar" resultType="modelo.Bean.facturaBean" parameterType="int">
+	SELECT c.idcliente,f.* FROM factura f INNER JOIN cliente c ON f.idcliente=c.idcliente where numfactura=#{numfactura} order by 1
+  </select>
+  <insert id="registrar" parameterType="modelo.Bean.facturaBean">
+    INSERT INTO FACTURA (numfactura,idcliente, fecha) VALUES (#{numfactura}, #{idcliente}, #{fecha})
+  </insert>
+  <update id="actualizar" parameterType="modelo.Bean.facturaBean" >
+
+  	UPDATE FACTURA SET 
+  	idcliente=#{idcliente},
+  	 fecha=#{fecha} WHERE factura.numfactura=#{numfactura}
+  </update>
+  <delete id="eliminar" parameterType="int">
+ 	delete from factura where numfactura=#{numfactura}
+  </delete>
+  
+  </mapper>

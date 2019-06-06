@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ClienteMapper">
+  <select id="listar" resultType="modelo.Bean.clienteBean">
+    SELECT * FROM CLIENTE order by 1
+  </select>
+  <select id="buscar" resultType="modelo.Bean.clienteBean" parameterType="int">
+	SELECT * FROM CLIENTE order by 1
+  </select>
+  <insert id="registrar" parameterType="modelo.Bean.clienteBean">
+    insert into CLIENTE (nombre,apellido,direccion,fechanacimiento,telefono,email,categoria) values
+     (#{nombre},#{apellido},#{direccion},#{fechanacimiento},#{telefono},#{email},#{categoria})
+  </insert>
+  <update id="actualizar" parameterType="modelo.Bean.clienteBean" >
+	 update CLIENTE SET
+	 nombre= #{nombre},
+	 apellido= #{apellido},
+	 direccion= #{direccion},
+	 fechanacimiento= #{fechanacimiento},
+	 telefono= #{telefono},
+	 email= #{email},
+	 categoria= #{categoria} where idcliente=#{idcliente}
+  	
+  </update>
+  <delete id="eliminar" parameterType="int">
+ 		DELETE FROM CLIENTE WHERE idcliente=#{idcliente}
+  </delete>
+  
+  </mapper>

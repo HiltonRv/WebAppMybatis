@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ProductoMapper">
+  <select id="listar" resultType="modelo.Bean.productoBean">
+    select * from producto ORDER BY 1
+  </select>
+  <select id="buscar" resultType="modelo.Bean.productoBean" parameterType="int">
+	select * from producto where idproducto=#{idproducto} order by 1
+  </select>
+  <insert id="registrar" parameterType="modelo.Bean.productoBean">
+    INSERT INTO PRODUCTO (idproducto,nombre,precio,stock) VALUES(#{idproducto},#{nombre},#{precio},#{stock})
+  </insert>
+  <update id="actualizar" parameterType="modelo.Bean.productoBean" >
+	UPDATE PRODUCTO SET nombre=#{nombre},precio=#{precio},stock=#{stock} WHERE idproducto=#{idproducto}
+  	
+  </update>
+  <delete id="eliminar" parameterType="int">
+ 	DELETE FROM PRODUCTO WHERE idproducto=#{idproducto}
+  </delete>
+  
+  </mapper>

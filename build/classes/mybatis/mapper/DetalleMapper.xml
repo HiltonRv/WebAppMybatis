@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.DetalleMapper">
+  <select id="listar" resultType="modelo.Bean.detalleBean">
+   SELECT f.*,d.*,p.* FROM factura f INNER JOIN detalle d ON f.numfactura=d.numfactura INNER JOIN producto p on d.idproducto=p.idproducto order by 1
+  </select>
+  <select id="buscar" resultType="modelo.Bean.detalleBean" parameterType="int">
+	SELECT f.*,d.*,p.* FROM factura f INNER JOIN detalle d ON f.numfactura=d.numfactura INNER JOIN producto p on d.idproducto=p.idproducto where numdetalle=#{numdetalle} order by 1
+  </select>
+  <insert id="registrar" parameterType="modelo.Bean.detalleBean">
+    INSERT INTO detalle (numdetalle, numfactura, idproducto, cantidad) VALUES (#{numdetalle},#{numfactura},#{idproducto},#{cantidad})
+  </insert>
+  <update id="actualizar" parameterType="modelo.Bean.detalleBean" >
+	UPDATE detalle SET numfactura=#{numfactura},idproducto=#{idproducto},cantidad=#{cantidad},precio=#{precio} WHERE numdetalle=#{numdetalle}
+  	
+  </update>
+  <delete id="eliminar" parameterType="int">
+ 	DELETE FROM detalle WHERE numdetalle =#{numdetalle}
+  </delete>
+  
+  </mapper>
